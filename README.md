@@ -4,6 +4,7 @@
 
 All commits will start being signed with Key#71627D48.
 
+
 ###Installation
 
 1. Clone the repo and install the dependencies. (Eventually Ill add a pip requirements file)
