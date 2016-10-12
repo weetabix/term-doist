@@ -9,8 +9,8 @@ import time
 
 #import api key
 import sys
-sys.path.insert(0, '/etc/todoist-cli/')
-import tcconfig
+sys.path.insert(0, '/etc/term-doist/')
+import tdconfig
 
 task = ""
 project = ""
