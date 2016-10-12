@@ -5,7 +5,7 @@ alias task="~/git/term-doist/term-doist.py"
 alias tasks="~/git/term-doist/term-doist.py"                      
 alias taskadd="~/git/term-doist/term-doist.py -a "                
 
-or a function to allow you "task" and "task add"
+or a function to allow you "task" and "task add" for .bashrc or .zshrc
 
 function task {                                                                 
   if (( $# == 0 ))                                                              
