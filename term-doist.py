@@ -38,7 +38,7 @@ parser.add_argument('-P','--priority',
 args = parser.parse_args()
 
 #Get a first run of the sync results.
-api = todoist.TodoistAPI(tcconfig.api_key)
+api = todoist.TodoistAPI(tdconfig.api_key)
 api.reset_state()
 results=api.sync(commands=[])
 
