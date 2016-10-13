@@ -53,15 +53,18 @@ def reset_sync():
 
 def task_list():
     """Retrive and print a task list."""
-    print(' {0:^3} ┊{2:<3}┊ {1:^40} {3:^}'.format("","Task Notes","Pr⬆","Project"))
-    print(' {:┉^3} ┊{:┉<3}┊ {:┉^40} {:┉^7}'.format("","","",""))
+    print('╭{:─^3}─┰{:─<3}┰{:─^41}┰{:─^7}╮'.format("","","",""))
+    print('│{0:^3} ┃{2:<3}┃{1:^41}┃{3:^}│'.format("#","Task Notes","Pr⬆","Project"))
+    print('┝{:━^3}━╇{:━<3}╇{:━^41}╇{:━^7}┥'.format("","","",""))
+
     for i in range(0,len(results['items'])):
         if results['items'][i]['item_order'] != 14:
             prio = "➡" * (results['items'][i]['priority'] - 1)
             for j in range(0,len(results['projects'])):
                 if results['items'][i]['project_id'] == results['projects'][j]['id']:
                     proj = results['projects'][j]['name']
-            print(' {0:<3d} ┊{2:<3}┊ {1:40} {3}'.format(i,results['items'][i]['content'],prio,proj))
+            print('│{0:<3d} │{2:<3}┝ {1:40}│{3:<7}│'.format(i,results['items'][i]['content'],prio,proj))
+    print('╰{:─^3}─┴{:─<3}┴{:─^41}┴{:─^7}╯'.format("","","",""))
 
 
 def task_add(task_list,project,priority):
