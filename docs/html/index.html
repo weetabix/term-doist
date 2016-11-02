@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Welcome to term_doist’s documentation! &mdash; termDoist 1.0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="termDoist 1.0.1 documentation" href="#" />
+    <link rel="next" title="Full Release Notes" href="full_relnote.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="full_relnote.html" title="Full Release Notes"
+             accesskey="N">next</a> |</li>
+        <li><a href="#">termDoist 1.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="welcome-to-term-doist-s-documentation">
+<h1>Welcome to term_doist&#8217;s documentation!<a class="headerlink" href="#welcome-to-term-doist-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>A Python 3 cli Todoist client.</p>
+<div class="section" id="latest-release-notes">
+<h2>Latest Release Notes<a class="headerlink" href="#latest-release-notes" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 1.0.1.</span></p>
+</div>
+<p>Added Sphinx documentation</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="full_relnote.html">Full Release Notes</a></li>
+</ul>
+</div>
+<p>&#8211;</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<span class="target" id="module-term_doist"></span><span class="target" id="module-term_doist"></span><p>This module is intended as a stand-alone interface
+to add and read Todoist tasks.</p>
+<p>Config goes in <tt class="docutils literal"><span class="pre">/etc/term-doist/tdconfig.py</span></tt></p>
+<p>The file contains:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">api_key</span> <span class="o">=</span> <span class="s">&#39;&lt;YourKeyHere12345&gt;&#39;</span>
+</pre></div>
+</div>
+<dl class="function">
+<dt id="term_doist.reset_sync">
+<tt class="descclassname">term_doist.</tt><tt class="descname">reset_sync</tt><big>(</big><em>api</em><big>)</big><a class="reference internal" href="_modules/term_doist.html#reset_sync"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#term_doist.reset_sync" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reload the sync with Todoist.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>api</strong> (<em>obj</em>) &#8211; The api object.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Modifies the api object.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="term_doist.task_add">
+<tt class="descclassname">term_doist.</tt><tt class="descname">task_add</tt><big>(</big><em>api</em>, <em>results</em>, <em>task_list</em>, <em>project</em>, <em>priority</em><big>)</big><a class="reference internal" href="_modules/term_doist.html#task_add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#term_doist.task_add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a task to the list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>api</strong> (<em>obj</em>) &#8211; The api object.</li>
+<li><strong>results</strong> (<a class="reference external" href="http://docs.python.org/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; Results from the latest sync</li>
+<li><strong>task_list</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a>) &#8211; Task converted to list</li>
+<li><strong>project</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; The project (folder) number</li>
+<li><strong>priority</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; 1-4 priority, effort based.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The returned ID and data</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="term_doist.task_list">
+<tt class="descclassname">term_doist.</tt><tt class="descname">task_list</tt><big>(</big><em>api</em>, <em>results</em><big>)</big><a class="reference internal" href="_modules/term_doist.html#task_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#term_doist.task_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display the task list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>api</strong> (<em>obj</em>) &#8211; The api object.</li>
+<li><strong>results</strong> (<a class="reference external" href="http://docs.python.org/library/stdtypes.html#dict" title="(in Python v2.7)"><em>dict</em></a>) &#8211; Results from the latest sync</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>The return code:</p>
+<div class="highlight-python"><div class="highlight"><pre>0 -- Success!
+!0 -- Uh oh!
+</pre></div>
+</div>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">int</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">modules <tt class="xref py py-mod docutils literal"><span class="pre">todoist</span></tt></p>
+</div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
+<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to term_doist&#8217;s documentation!</a><ul>
+<li><a class="reference internal" href="#latest-release-notes">Latest Release Notes</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="full_relnote.html"
+                        title="next chapter">Full Release Notes</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="full_relnote.html" title="Full Release Notes"
+             >next</a> |</li>
+        <li><a href="#">termDoist 1.0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2016, Ryan Parkyn &lt;ryan@ryanparkyn.ca&gt;.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,1 +1,4 @@
-.term-doist.py.swp
+__pycache__
+build/  
+source/
+Makefile  
