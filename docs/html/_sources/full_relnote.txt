@@ -1,0 +1,8 @@
+Full Release Notes
+++++++++++++++++++
+
+.. versionadded:: 1.0.1
+
+Added Sphinx documentation
+
+--

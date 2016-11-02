@@ -1,0 +1,13 @@
+Latest Release Notes
+++++++++++++++++++++
+
+.. versionadded:: 1.0.1
+
+Added Sphinx documentation
+
+.. toctree::
+   :maxdepth: 2
+
+   full_relnote
+
+--

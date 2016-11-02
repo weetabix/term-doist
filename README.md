@@ -1,4 +1,4 @@
-##term-doist
+##term_doist
 
 ####A Linux command line tool to access todoist, written in Python 3.
 

@@ -1,4 +1,21 @@
 #!/usr/bin/python3
+"""
+.. module:: term_doist
+   :platform: Linux, Windows
+   :synopsis: A Todoist python cli library/tool.
+
+.. moduleauthor:: Ryan Parkyn <ryan@ryanparkyn.ca>
+
+This module is intended as a stand-alone interface
+to add and read Todoist tasks.
+
+Config goes in ``/etc/term-doist/tdconfig.py``
+
+The file contains::
+
+    api_key = '<YourKeyHere12345>'
+
+"""
 
 import todoist
 import argparse
@@ -6,47 +23,36 @@ import sys
 sys.path.insert(0, '/etc/term-doist/')  # import api key and options
 import tdconfig
 
-task = ""
-project = ""
-priority = None
+def reset_sync(api):
+    """Reload the sync with Todoist.
 
-parser = argparse.ArgumentParser(description='A tool to allow you to add and list tasks from Todoist.\
-                                             The default behaviour is to list your tasks. (defaults) are in ()\'s. ')
-parser.add_argument('-a', '--add',
-                    help='Add task',
-                    action='store',
-                    dest='task',
-                    nargs='*')
-parser.add_argument('-p', '--project',
-                    help='Project (Inbox)',
-                    action='store',
-                    dest='project',
-                    default="Inbox")
-parser.add_argument('-P', '--priority',
-                    help='Priority 1 - 4 Low Med High Urgent (1 "Low Energy")',
-                    type=int,
-                    action='store',
-                    dest='priority',
-                    default=1)
+     Args:
+       api (obj):  The api object.
 
-args = parser.parse_args()
+     Returns:
+       Modifies the api object.
 
-# Get a first run of the sync results.
-api = todoist.TodoistAPI(tdconfig.api_key)
-api.reset_state()
-results = api.sync(commands=[])
-
-
-def reset_sync():
-    """Reset the sync state and repull results."""
-    api.reset_state()                                                                                                
+    """
+    api.reset_state()
     results = api.sync(commands=[])
     print("Reset")
     return results
 
 
-def task_list():
-    """Retrive and print a task list."""
+def task_list(api, results):
+    """Display the task list.
+
+    Args:
+       api (obj):  The api object.
+       results (dict): Results from the latest sync
+
+    Returns:
+       int:  The return code::
+
+          0 -- Success!
+          !0 -- Uh oh!
+
+    """
     print('┌{:─^3}─┰{:─<3}┰{:─^51}┰{:─^7}┐'.format("", "", "", ""))
     print('│{0:^3} ┃{2:<3}┃{1:^51}┃{3:^}│'.format("#", "Task Notes", "Pr⬆", "Project"))
     print('┝{:━^3}━╇{:━<3}╇{:━^51}╇{:━^7}┥'.format("", "", "", ""))
@@ -69,8 +75,20 @@ def task_list():
     print('└{:─^3}─┴{:─<3}┴{:─^51}┴{:─^7}┘'.format("", "", "", ""))
 
 
-def task_add(task_list, project, priority):
-    """Add a task to the list."""
+def task_add(api, results, task_list, project, priority):
+    """Add a task to the list.
+
+    Args:
+       api (obj):  The api object.
+       results (dict): Results from the latest sync
+       task_list (list): Task converted to list
+       project (int): The project (folder) number
+       priority (int): 1-4 priority, effort based.
+
+    Returns:
+       list:  The returned ID and data
+
+    """
     print("task added")
     task = (" ".join(task_list))
     print("task", task)
@@ -84,9 +102,42 @@ def task_add(task_list, project, priority):
     api.commit()
 
 
-if args.task:
-    task_add(args.task, args.project, args.priority)
-#    results = reset_sync()
-#    task_list()
-else:
-    task_list()
+def main():                                                                                                        
+                                                                                                                        
+# Get a first run of the sync results.                                                                                  
+    api = todoist.TodoistAPI(tdconfig.api_key)
+    api.reset_state()
+    results = api.sync(commands=[])
+                                                                                                                        
+    parser = argparse.ArgumentParser(description='A tool to allow you to add and list tasks from Todoist.\
+                                               The default behaviour is to list your tasks. (defaults) are in ()\'s. ')
+    parser.add_argument('-a', '--add',
+                        help='Add task',
+                        action='store',
+                        dest='task',
+                        nargs='*')
+    parser.add_argument('-p', '--project',
+                        help='Project (Inbox)',
+                        action='store',
+                        dest='project',
+                        default="Inbox")
+    parser.add_argument('-P', '--priority',
+                        help='Priority 1 - 4 Low Med High Urgent (1 "Low Energy")',
+                        type=int,
+                        action='store',
+                        dest='priority',
+                        default=1)
+
+    args = parser.parse_args()
+
+    if args.task:
+        task_add(api, results, args.task, args.project, args.priority)                    
+        results = reset_sync(api)                                                      
+        task_list(api, results)                                                                
+    else:                                                                                                   
+        task_list(api, results)                                                                           
+                                                                                                                        
+                                                                                                                        
+if __name__ == "__main__":                                                                                             
+    main()
+
